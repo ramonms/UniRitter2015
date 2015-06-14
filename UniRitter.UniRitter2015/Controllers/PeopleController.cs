@@ -18,7 +18,7 @@ namespace UniRitter.UniRitter2015.Controllers
         }
 
         // GET: api/Person/5
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(Guid id)//guid
         {
             return Json("value");
         }
@@ -38,16 +38,14 @@ namespace UniRitter.UniRitter2015.Controllers
         }
 
         // PUT: api/Person/5
-        public IHttpActionResult Put(int id, [FromBody]PersonModel person)
+        public IHttpActionResult Put(Guid id, [FromBody]PersonModel value)
         {
-            return Json(person);
+            return Json(value);
         }
 
         // DELETE: api/Person/5
         public void Delete(int id)
         {
-            // todo: implement resource (logical) removal later on
-            throw new NotImplementedException();
         }
     }
 }
