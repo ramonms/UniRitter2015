@@ -9,24 +9,23 @@ using UniRitter.UniRitter2015.Services;
 
 namespace UniRitter.UniRitter2015.Controllers
 {
-    public class PeopleController : ApiController
+    public class PostController : ApiController
     {
-        private readonly IRepository<PersonModel> _repo;
+        private readonly IRepository<PostModel> _repo;
 
-        public PeopleController(IRepository<PersonModel> repo)
+        public PostController(IRepository<PostModel> repo)
         {
             this._repo = repo;
         }
 
-        // GET: api/Person
+        // GET: api/Post
         public IHttpActionResult Get()
         {
             return Json(_repo.GetAll());
         }
 
-        // GET: api/Person/5
-        public IHttpActionResult Get(Guid id)//guid
-
+        // GET: api/Post/5
+        public IHttpActionResult Get(Guid id)
         {
             var data = _repo.GetById(id);
             if (data != null)
@@ -37,12 +36,12 @@ namespace UniRitter.UniRitter2015.Controllers
             return NotFound();
         }
 
-        // POST: api/Person
-        public IHttpActionResult Post([FromBody]PersonModel person)
+        // POST: api/Post
+        public IHttpActionResult Post([FromBody]PostModel post)
         {
             if (ModelState.IsValid)
             {
-                var data = _repo.Add(person);
+                var data = _repo.Add(post);
                 return Json(data);
             }
             else
@@ -51,20 +50,18 @@ namespace UniRitter.UniRitter2015.Controllers
             }
         }
 
-
-        public IHttpActionResult Put(Guid id, [FromBody]PersonModel person)
+        // PUT: api/Post/5
+        public IHttpActionResult Put(Guid id, [FromBody]PostModel post)
         {
-            var data = _repo.Update(id, person);
-            return Json(person);
-
+            var data = _repo.Update(id, post);
+            return Json(post);
         }
 
-        // DELETE: api/Person/5
+        // DELETE: api/Post/5
         public IHttpActionResult Delete(Guid id)
         {
             _repo.Delete(id);
             return StatusCode(HttpStatusCode.NoContent);
-
         }
     }
 }

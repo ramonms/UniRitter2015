@@ -9,24 +9,23 @@ using UniRitter.UniRitter2015.Services;
 
 namespace UniRitter.UniRitter2015.Controllers
 {
-    public class PeopleController : ApiController
+    public class CommentController : ApiController
     {
-        private readonly IRepository<PersonModel> _repo;
+        private readonly IRepository<CommentModel> _repo;
 
-        public PeopleController(IRepository<PersonModel> repo)
+        public CommentController(IRepository<CommentModel> repo)
         {
             this._repo = repo;
         }
 
-        // GET: api/Person
+        // GET: api/Comment
         public IHttpActionResult Get()
         {
             return Json(_repo.GetAll());
         }
 
-        // GET: api/Person/5
-        public IHttpActionResult Get(Guid id)//guid
-
+        // GET: api/Comment/5
+        public IHttpActionResult Get(Guid id)
         {
             var data = _repo.GetById(id);
             if (data != null)
@@ -37,12 +36,12 @@ namespace UniRitter.UniRitter2015.Controllers
             return NotFound();
         }
 
-        // POST: api/Person
-        public IHttpActionResult Post([FromBody]PersonModel person)
+        // POST: api/Comment
+        public IHttpActionResult Post([FromBody]CommentModel comment)
         {
             if (ModelState.IsValid)
             {
-                var data = _repo.Add(person);
+                var data = _repo.Add(comment);
                 return Json(data);
             }
             else
@@ -51,20 +50,18 @@ namespace UniRitter.UniRitter2015.Controllers
             }
         }
 
-
-        public IHttpActionResult Put(Guid id, [FromBody]PersonModel person)
+        // PUT: api/Comment/5
+        public IHttpActionResult Put(Guid id, [FromBody]CommentModel comment)
         {
-            var data = _repo.Update(id, person);
-            return Json(person);
-
+            var data = _repo.Update(id, comment);
+            return Json(comment);
         }
 
-        // DELETE: api/Person/5
+        // DELETE: api/Comment/5
         public IHttpActionResult Delete(Guid id)
         {
             _repo.Delete(id);
             return StatusCode(HttpStatusCode.NoContent);
-
         }
     }
 }

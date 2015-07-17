@@ -101,7 +101,8 @@ namespace UniRitter.UniRitter2015.Specs
 
 
         [Then(@"the person is added to the database")]
-        [Then(@"I receive the updated resource in the body of the message")]        
+        [Then(@"I receive the updated resource in the body of the message")]
+        [Then(@"the resource id is populated")]   
         public void ThenThePersonIsAddedToTheDatabase()
         {
             //ScenarioContext.Current.Pending();
