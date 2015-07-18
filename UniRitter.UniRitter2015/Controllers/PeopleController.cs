@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using UniRitter.UniRitter2015.Models;
 using UniRitter.UniRitter2015.Services;
@@ -15,7 +12,7 @@ namespace UniRitter.UniRitter2015.Controllers
 
         public PeopleController(IRepository<PersonModel> repo)
         {
-            this._repo = repo;
+            _repo = repo;
         }
 
         // GET: api/Person
@@ -25,8 +22,7 @@ namespace UniRitter.UniRitter2015.Controllers
         }
 
         // GET: api/Person/5
-        public IHttpActionResult Get(Guid id)//guid
-
+        public IHttpActionResult Get(Guid id)
         {
             var data = _repo.GetById(id);
             if (data != null)
@@ -38,25 +34,21 @@ namespace UniRitter.UniRitter2015.Controllers
         }
 
         // POST: api/Person
-        public IHttpActionResult Post([FromBody]PersonModel person)
+        public IHttpActionResult Post([FromBody] PersonModel person)
         {
             if (ModelState.IsValid)
             {
                 var data = _repo.Add(person);
                 return Json(data);
             }
-            else
-            {
-                return BadRequest(ModelState);
-            }
+            return BadRequest(ModelState);
         }
 
-
-        public IHttpActionResult Put(Guid id, [FromBody]PersonModel person)
+        // PUT: api/Person/5
+        public IHttpActionResult Put(Guid id, [FromBody] PersonModel person)
         {
             var data = _repo.Update(id, person);
             return Json(person);
-
         }
 
         // DELETE: api/Person/5
@@ -64,7 +56,6 @@ namespace UniRitter.UniRitter2015.Controllers
         {
             _repo.Delete(id);
             return StatusCode(HttpStatusCode.NoContent);
-
         }
     }
 }
