@@ -1,0 +1,12 @@
+diff a/UniRitter.UniRitter2015.Specs/GlobalHooks.cs b/UniRitter.UniRitter2015.Specs/GlobalHooks.cs	(rejected hunks)
+@@ -1,9 +0,4 @@
+-﻿using System;
+-using System.Collections.Generic;
+-using System.Diagnostics;
+-using System.Linq;
+-using System.Text;
+-using System.Threading;
++﻿using Microsoft.Owin.Hosting;
+ using TechTalk.SpecFlow;
+ 
+ namespace UniRitter.UniRitter2015.Specs
