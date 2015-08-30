@@ -6,10 +6,8 @@ namespace UniRitter.UniRitter2015
 {
     public class Program
     {
-        private static void Main(string[] args)
-        {
-            using (StartApi())
-            {
+        private static void Main(string[] args)        {
+            using (StartApi())            {
                 Console.ReadLine();
             }
         }
@@ -17,6 +15,7 @@ namespace UniRitter.UniRitter2015
         public static IDisposable StartApi()
         {
             var cfg = (IApiConfig)Startup.kernel.GetService(typeof(IApiConfig));
+           
             // todo: also get base dns/ip from config
             var baseAddress = cfg.FullUrl;
 

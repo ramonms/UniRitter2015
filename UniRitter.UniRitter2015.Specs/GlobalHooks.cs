@@ -9,11 +9,11 @@ namespace UniRitter.UniRitter2015.Specs
     public sealed class GlobalHooks
     {
         [BeforeTestRun]
-        public static void BeforeTestRun()
-        {
+        public static void BeforeTestRun()        {
             var baseAddress = "http://localhost:49556/";
 
             WebApp.Start<Startup>(baseAddress);
+
             Startup.kernel.Rebind(typeof(IRepository<>)).To(typeof(InMemoryRepository<>));
         }
 

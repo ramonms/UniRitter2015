@@ -21,8 +21,7 @@ namespace UniRitter.UniRitter2015
             CreateKernel();
         }
 
-        public void Configuration(IAppBuilder app)
-        {
+        public void Configuration(IAppBuilder app)        {
             var config = new HttpConfiguration();
             config.Routes.MapHttpRoute("DefaultApi", "{controller}/{id}",
                 new {id = RouteParameter.Optional, controller = "values"});
@@ -33,8 +32,7 @@ namespace UniRitter.UniRitter2015
             app.UseNinjectMiddleware(() => kernel).UseNinjectWebApi(config);
         }
 
-        private static void CreateKernel()
-        {
+        private static void CreateKernel()        {
             kernel = new StandardKernel();
             kernel.Load(Assembly.GetExecutingAssembly());
 
